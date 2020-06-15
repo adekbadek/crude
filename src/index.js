@@ -59,7 +59,18 @@ const App = () => {
             }}
           >
             <img src={user.image} />
-            <div style={{ flex: '1', margin: '0 10px' }}>{user.name}</div>
+            <input
+              style={{ flex: '1', margin: '0 10px' }}
+              value={user.name}
+              onChange={e => {
+                dispatch(
+                  actions.userUpdate({
+                    id: user.id,
+                    changes: { name: e.target.value },
+                  }),
+                )
+              }}
+            />
           </div>
         ))}
       </div>
