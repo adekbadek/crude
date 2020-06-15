@@ -71,6 +71,14 @@ const App = () => {
                 )
               }}
             />
+            <button
+              style={{ marginBottom: 0 }}
+              onClick={() => {
+                dispatch(actions.userRemove(user.id))
+              }}
+            >
+              delete
+            </button>
           </div>
         ))}
       </div>
