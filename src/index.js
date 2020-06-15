@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { render } from 'react-dom'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 
@@ -9,6 +9,19 @@ const App = () => {
   const dispatch = useDispatch()
   // A selector automatically created by createEntityAdapter
   const allUsers = useSelector(selectors.selectAll)
+
+  useEffect(() => {
+    fetch(`https://randomuser.me/api/?results=10`)
+      .then(res => res.json())
+      .then(({ results }) => {
+        const users = results.map(user => ({
+          id: user.login.uuid,
+          name: `${user.name.first} ${user.name.last}`,
+          image: user.picture.thumbnail,
+        }))
+        dispatch(actions.usersAddMany(users))
+      })
+  }, [])
 
   const handleFormSubmit = e => {
     e.preventDefault()

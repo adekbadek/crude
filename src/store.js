@@ -13,6 +13,7 @@ const usersSlice = createSlice({
   initialState: usersAdapter.getInitialState(),
   reducers: {
     usersAddOne: usersAdapter.addOne,
+    usersAddMany: usersAdapter.addMany,
   },
 })
 
